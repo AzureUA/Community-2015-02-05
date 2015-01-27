@@ -1,0 +1,1 @@
+ServiceBusExplorer.exe -c Endpoint=sb://azureua-bus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hdmNdozI1I0IZtdYxBSFPwGRLIKPf+WDAghLZAubn6A=

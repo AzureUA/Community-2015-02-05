@@ -5,45 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
+using Common;
 
 namespace ConsoleApplication1
 {
-    public class MessageSender
+    public class MessageSender : Transmitter
     {
         private readonly string _connectionString;
         private readonly QueueClient _queueClient;
 
-        public MessageSender(string queueName, string connectionString)
+        public MessageSender(string queueName, string connectionString) : base(queueName, connectionString)
         {
-            _connectionString = connectionString;
-            QueueName = queueName;
-
-            ConfigureQueueSettings();
-            _queueClient = CreateQueueClient();
-        }
-
-        public string QueueName { get; private set; }
-
-        private void ConfigureQueueSettings()
-        {
-            // Configure Queue Settings
-            QueueDescription qd = new QueueDescription(QueueName);
-            qd.MaxSizeInMegabytes = 5120;
-            qd.DefaultMessageTimeToLive = new TimeSpan(0, 1, 0);
-
-            // Create a new Queue with custom settings
-            var namespaceManager =
-                NamespaceManager.CreateFromConnectionString(_connectionString);
-
-            if (!namespaceManager.QueueExists(QueueName))
-            {
-                namespaceManager.CreateQueue(qd);
-            }
-        }
-
-        private QueueClient CreateQueueClient()
-        {
-            return QueueClient.CreateFromConnectionString(_connectionString, QueueName);
         }
 
         public void Send(BrokeredMessage message)

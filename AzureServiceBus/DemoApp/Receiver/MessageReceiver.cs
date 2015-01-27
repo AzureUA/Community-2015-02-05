@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common;
+using Microsoft.ServiceBus.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +8,16 @@ using System.Threading.Tasks;
 
 namespace Receiver
 {
-    public class MessageReceiver
+    public class MessageReceiver : Transmitter
     {
-        private readonly string _connectionString;
-        public MessageReceiver(string connectionString, string queueName)
+        public MessageReceiver(string queueName, string connectionString)
+            : base(queueName, connectionString)
         {
-            _connectionString = connectionString;
-            QueueName = queueName;
         }
 
-        public string QueueName { get; private set; }
+        public BrokeredMessage Read()
+        {
+            return _queueClient.Receive(new TimeSpan(0, 1, 0));
+        }
     }
 }

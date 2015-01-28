@@ -1,22 +1,17 @@
 ﻿#define spam
 
-using Microsoft.ServiceBus;
-using Microsoft.WindowsAzure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceBus.Messaging;
+using Microsoft.WindowsAzure;
+using MessageSender = Sender.MessageSender;
 
-namespace ConsoleApplication1
+namespace Sender
 {
     class Program
     {
         static void Main(string[] args)
         {
             // Create the queue if it does not exist already
-            Console.WriteLine("--== Running '{0}' ==--", typeof(Program).Assembly.ToString());
+            Console.WriteLine("--== Running '{0}' ==--", typeof(Program).Assembly);
 
             Console.WriteLine("Retrieving connection string from appConfig");
             string connectionString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
@@ -25,11 +20,12 @@ namespace ConsoleApplication1
             Console.WriteLine("Queue name to communicate: {0}", queueName);
 
             var messageSender = new MessageSender(queueName, connectionString);
+            messageSender.Configure();
 
 #if spam
 
             var spamCount = 10;
-            messageSender.SendSpam("Custome label", "Custome message", spamCount);
+            messageSender.SendSpam("Custom label", "Custom message", spamCount);
             Console.WriteLine("Sent {0} messages to queue", spamCount);
 #else
 

@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceBus;
-using Microsoft.ServiceBus.Messaging;
 using Common;
+using Microsoft.ServiceBus.Messaging;
 
-namespace ConsoleApplication1
+namespace Sender
 {
     public class MessageSender : Transmitter
     {
-        private readonly string _connectionString;
-        private readonly QueueClient _queueClient;
-
         public MessageSender(string queueName, string connectionString) : base(queueName, connectionString)
         {
         }

@@ -11,14 +11,17 @@ namespace Common
     public abstract class Transmitter
     {
         protected readonly string _connectionString;
-        protected readonly QueueClient _queueClient;
+        protected QueueClient _queueClient;
 
         protected Transmitter(string queueName, string connectionString)
         {
             _connectionString = connectionString;
 
             QueueName = queueName;
+        }
 
+        public void Configure()
+        {
             ConfigureQueueSettings();
             _queueClient = CreateQueueClient();
         }
@@ -28,9 +31,11 @@ namespace Common
         private void ConfigureQueueSettings()
         {
             // Configure Queue Settings
-            QueueDescription qd = new QueueDescription(QueueName);
-            qd.MaxSizeInMegabytes = 5120;
-            qd.DefaultMessageTimeToLive = new TimeSpan(0, 10, 0);
+            var qd = new QueueDescription(QueueName)
+            {
+                MaxSizeInMegabytes = 5120,
+                DefaultMessageTimeToLive = new TimeSpan(0, 10, 0)
+            };
 
             // Create a new Queue with custom settings
             var namespaceManager = NamespaceManager.CreateFromConnectionString(_connectionString);
@@ -41,7 +46,7 @@ namespace Common
             }
         }
 
-        private QueueClient CreateQueueClient()
+        protected virtual QueueClient CreateQueueClient()
         {
             return QueueClient.CreateFromConnectionString(_connectionString, QueueName);
         }

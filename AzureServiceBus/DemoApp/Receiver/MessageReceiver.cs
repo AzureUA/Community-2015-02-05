@@ -15,9 +15,14 @@ namespace Receiver
         {
         }
 
-        public BrokeredMessage Read()
+        public BrokeredMessage Read(int timeoutInMinutes = 1)
         {
-            return _queueClient.Receive(new TimeSpan(0, 1, 0));
+            return _queueClient.Receive(new TimeSpan(0, timeoutInMinutes, 0));
+        }
+
+        protected override QueueClient CreateQueueClient()
+        {
+            return QueueClient.CreateFromConnectionString(_connectionString, QueueName, ReceiveMode.ReceiveAndDelete);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.ServiceBus.Messaging;
 
 namespace Sender
 {
-    public class MessageSender : Transmitter
+    public class MessageSender : QueueTransmitter
     {
         public MessageSender(string queueName, string connectionString) : base(queueName, connectionString)
         {

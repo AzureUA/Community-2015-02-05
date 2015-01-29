@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Receiver
 {
-    public class MessageReceiver : Transmitter
+    public class MessageReceiver : QueueTransmitter
     {
         public MessageReceiver(string queueName, string connectionString)
             : base(queueName, connectionString)
@@ -22,7 +22,7 @@ namespace Receiver
 
         protected override QueueClient CreateQueueClient()
         {
-            return QueueClient.CreateFromConnectionString(_connectionString, QueueName, ReceiveMode.ReceiveAndDelete);
+            return QueueClient.CreateFromConnectionString(_connectionString, QueueName, ReceiveMode.PeekLock);
         }
     }
 }

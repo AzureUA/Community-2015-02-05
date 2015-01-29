@@ -12,10 +12,12 @@ namespace Receiver
         static void Main(string[] args)
         {
             // Create the queue if it does not exist already
+            Console.WriteLine("--== Running '{0}' ==--", typeof(Program).Assembly);
+
             string connectionString = CloudConfigurationManager.GetSetting("Microsoft.ServiceBus.ConnectionString");
             string queueName = CloudConfigurationManager.GetSetting("queueName");
 
-            Console.WriteLine("Creating instance of {0}", typeof(MessageReceiver).Name);
+            Console.WriteLine("Creating instance of '{0}' ...", typeof(MessageReceiver).Name);
             var receiver = new MessageReceiver(queueName, connectionString);
             receiver.Configure();
 

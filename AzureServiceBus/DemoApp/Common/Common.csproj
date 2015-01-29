@@ -50,6 +50,7 @@
     <Compile Include="BaseTransmitter.cs" />
     <Compile Include="QueueTransmitter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TopicTransmitter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

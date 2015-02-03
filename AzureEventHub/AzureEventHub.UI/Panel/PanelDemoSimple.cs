@@ -30,6 +30,8 @@ namespace AzureEventHub.UI.Panel
 			}
 
 			new Thread(async () => { await _messageService.SendMessage(message); }).Start();
+
+			tbMessage.Clear();
 		}
 
 		private void button1_Click(object sender, EventArgs e)

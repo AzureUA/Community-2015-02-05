@@ -1,0 +1,7 @@
+Event Hub scalablity
+* partition key
+* consuming group
+* batch send
+
+Event Hub security
+* security keys and access privileges

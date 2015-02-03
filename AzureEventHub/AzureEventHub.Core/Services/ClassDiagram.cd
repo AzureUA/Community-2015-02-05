@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AzureEventHub.Core.Services.AzureEventHubMessageService&lt;T&gt;">
+    <Position X="5.5" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AzureEventHubMessageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AzureEventHub.Core.Services.AzureEventHubMessageServiceBase&lt;T&gt;">
+    <Position X="3.25" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAEAAAAAAEAAQCAAAAAAACAEAAAAABAAAAAIAAA=</HashCode>
+      <FileName>Services\AzureEventHubMessageServiceBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="AzureEventHub.Core.Services.AzureEventHubSimpleMessageService">
+    <Position X="2" Y="4.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AzureEventHubSimpleMessageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

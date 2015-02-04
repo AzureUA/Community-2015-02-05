@@ -36,8 +36,10 @@ namespace Consumer
 
                     Console.WriteLine("Received: {0}", retrievedMessage.AsString);
                 }
-
-                Thread.Sleep(2000);
+                else
+                {
+                    Thread.Sleep(2000);
+                }
             }
         }
     }

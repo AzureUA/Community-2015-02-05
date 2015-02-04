@@ -5,7 +5,7 @@
 ##Basics
  - [How to use servie bus queue](http://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-queues/)
  - [How to use service bus queue. Topics and subscriptions](http://azure.microsoft.com/en-us/documentation/articles/service-bus-dotnet-how-to-use-topics-subscriptions/)
- - [Azure Queues and Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/en-us/library/azure/hh767287.aspx)
+ - [Azure Queues and Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/en-us/library/azure/hh767287.aspx) ([RU version](http://habrahabr.ru/company/infopulse/blog/223863/))
 
 ##Recommended video
  - [Servie bus for Azure](http://azure.microsoft.com/en-us/documentation/videos/index/?services=service-bus)

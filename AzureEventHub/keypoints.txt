@@ -1,0 +1,8 @@
+Event Hub scalablity
+* partition key
+* consuming group
+* batch send
+* max 5 receivers per partition in group
+
+Event Hub security
+* security keys and access privileges

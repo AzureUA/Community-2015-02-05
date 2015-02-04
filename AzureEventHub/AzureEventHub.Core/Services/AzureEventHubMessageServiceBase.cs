@@ -23,7 +23,7 @@ namespace AzureEventHub.Core.Services
 
 		protected EventHubReceiver Receiver
 		{
-			get { return _receiver ?? (_receiver = _client.GetDefaultConsumerGroup()/*GetConsumerGroup(_groupName)*/.CreateReceiver(_partitionKey.ToString())); }
+			get { return _receiver ?? (_receiver = _client.GetDefaultConsumerGroup().CreateReceiver(_partitionKey.ToString())); }
 		}
 
 		protected AzureEventHubMessageServiceBase()

@@ -65,7 +65,7 @@ namespace AzureEventHub.UI.Panel
 
 		private void btnCreateReceiver10_Click(object sender, EventArgs e)
 		{
-			CreateReceivers(10);
+			CreateReceivers(5);
 		}
 
 		private void CreateReceivers(int count)

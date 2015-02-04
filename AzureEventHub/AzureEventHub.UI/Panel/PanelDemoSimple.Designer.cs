@@ -141,7 +141,7 @@
 			this.btnCreateReceiver10.Name = "btnCreateReceiver10";
 			this.btnCreateReceiver10.Size = new System.Drawing.Size(75, 42);
 			this.btnCreateReceiver10.TabIndex = 6;
-			this.btnCreateReceiver10.Text = "Create 10 receivers";
+			this.btnCreateReceiver10.Text = "Create 5 receivers";
 			this.btnCreateReceiver10.UseVisualStyleBackColor = true;
 			this.btnCreateReceiver10.Click += new System.EventHandler(this.btnCreateReceiver10_Click);
 			// 

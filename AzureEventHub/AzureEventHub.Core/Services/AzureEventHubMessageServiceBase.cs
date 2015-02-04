@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AzureEventHub.Infrastructure.Services;
-using Microsoft.ServiceBus;
 using Microsoft.ServiceBus.Messaging;
 
 namespace AzureEventHub.Core.Services
@@ -52,6 +52,9 @@ namespace AzureEventHub.Core.Services
 		}
 
 		public abstract Task SendMessage(T messageText);
+		
+		public abstract Task SendMessageBatch(IEnumerable<T> messages);
+
 		public abstract Task<T> ReceiveMessage(TimeSpan timeout);
 
 		//private static string GetServiceBusConnectionString()

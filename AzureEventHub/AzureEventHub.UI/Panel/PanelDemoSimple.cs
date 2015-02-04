@@ -22,43 +22,116 @@ namespace AzureEventHub.UI.Panel
 
 		private void btnSendMessage_Click(object sender, EventArgs e)
 		{
-			var message = tbMessage.Text.Trim();
+			SendMessages(tbMessage.Text.Trim(), 1);
+		}
 
-			if (string.IsNullOrWhiteSpace(message))
+		private void btnSendMessage10_Click(object sender, EventArgs e)
+		{
+			SendMessages(tbMessage.Text.Trim(), 10);
+		}
+
+		private void btnSendMessage100_Click(object sender, EventArgs e)
+		{
+			SendMessages(tbMessage.Text.Trim(), 100);
+		}
+
+		private void SendMessages(string message, int count)
+		{
+			switch (count)
 			{
-				return;
+				case 0:
+					return;
+				case 1:
+					new Thread(async () => { await _messageService.SendMessage(message); }).Start();
+					break;
+				default:
+					var data = new List<string>();
+
+					for (int i = 0; i < count; i++)
+					{
+						data.Add(string.Format("{0} #{1}", message, i));
+					}
+
+					new Thread(async () => { await _messageService.SendMessageBatch(data); }).Start();
+					break;
 			}
-
-			new Thread(async () => { await _messageService.SendMessage(message); }).Start();
-
 			tbMessage.Clear();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void btnCreateReceiver_Click(object sender, EventArgs e)
 		{
-			var thread = new Thread(StartMessageReceiver);
-			thread.Name = string.Format("Receiver Thread {0}", _receiverThreads.Count + 1);
-			thread.Start();
-			
-			_receiverThreads.Add(thread);
-
-			lbReceiversCount.Text = _receiverThreads.Count.ToString();
+			CreateReceivers(1);
 		}
 
-		private async void StartMessageReceiver()
+		private void btnCreateReceiver10_Click(object sender, EventArgs e)
 		{
-			var oneSecond = new TimeSpan(0, 0, 1);
+			CreateReceivers(10);
+		}
 
-			while (true)
+		private void CreateReceivers(int count)
+		{
+			for (int i = 0; i < count; i++)
 			{
-				var message = await _messageService.ReceiveMessage(oneSecond);
-
-				if (message != null)
+				var worker = new MessageReceiverWorker(_messageService, _receiverThreads.Count + 1);
+				worker.OnMessageReceived += delegate(string status)
 				{
-					var status = string.Format("{0} received: {1}", Thread.CurrentThread.Name, message);
-				}
+					var text = rtbMessages.GetPropertyThreadSafe(() => rtbMessages.Text);
 
-				Thread.Sleep(oneSecond);
+					text = string.IsNullOrWhiteSpace(text) ?
+						status :
+						string.Format("{0}{1}{2}", text, Environment.NewLine, status);
+
+					rtbMessages.SetPropertyThreadSafe(() => rtbMessages.Text, text);
+				};
+
+				var thread = new Thread(worker.StartMessageReceiver);
+				thread.Start();
+
+				_receiverThreads.Add(thread);
+
+				lbReceiversCount.Text = _receiverThreads.Count.ToString();
+			}
+		}
+
+		sealed class MessageReceiverWorker
+		{
+			internal delegate void MessageReceiver(string status);
+
+			internal event MessageReceiver OnMessageReceived;
+
+			private void TriggerOnMessageReceived(string status)
+			{
+				var handler = OnMessageReceived;
+				if (handler != null)
+				{
+					handler(status);
+				}
+			}
+
+			private readonly IMessageServiceAsync<string> _messageService;
+			private readonly int _receiverNumber;
+
+			public MessageReceiverWorker(IMessageServiceAsync<string> messageService, int receiverNumber)
+			{
+				_messageService = messageService;
+				_receiverNumber = receiverNumber;
+			}
+
+			internal async void StartMessageReceiver()
+			{
+				var oneSecond = new TimeSpan(0, 0, 1);
+
+				while (true)
+				{
+					var message = await _messageService.ReceiveMessage(oneSecond);
+
+					if (message != null)
+					{
+						var status = string.Format("worker #{0} received: {1}", _receiverNumber, message);
+
+						TriggerOnMessageReceived(status);
+					}
+				}
 			}
 		}
 	}

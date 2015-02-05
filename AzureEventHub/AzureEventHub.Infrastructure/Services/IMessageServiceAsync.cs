@@ -6,7 +6,7 @@ namespace AzureEventHub.Infrastructure.Services
 {
 	public interface IMessageServiceAsync<T>
 	{
-		Task SendMessage(T messageText);
+		Task SendMessage(T message);
 
 		Task SendMessageBatch(IEnumerable<T> messages);
 

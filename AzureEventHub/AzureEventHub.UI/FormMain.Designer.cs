@@ -29,10 +29,13 @@
 		private void InitializeComponent()
 		{
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.panelDemoSimple1 = new AzureEventHub.UI.Panel.PanelDemoSimple();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.panelDemoSimple1 = new AzureEventHub.UI.Panel.PanelDemoSimple();
+			this.panelDemoAdvanced1 = new AzureEventHub.UI.Panel.PanelDemoAdvanced();
 			this.tabPage1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
+			this.tabPage2.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tabPage1
@@ -46,6 +49,28 @@
 			this.tabPage1.Text = "Simple";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
+			// tabControl1
+			// 
+			this.tabControl1.Controls.Add(this.tabPage1);
+			this.tabControl1.Controls.Add(this.tabPage2);
+			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tabControl1.Location = new System.Drawing.Point(0, 0);
+			this.tabControl1.Name = "tabControl1";
+			this.tabControl1.SelectedIndex = 0;
+			this.tabControl1.Size = new System.Drawing.Size(678, 474);
+			this.tabControl1.TabIndex = 0;
+			// 
+			// tabPage2
+			// 
+			this.tabPage2.Controls.Add(this.panelDemoAdvanced1);
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(670, 448);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Advanced";
+			this.tabPage2.UseVisualStyleBackColor = true;
+			// 
 			// panelDemoSimple1
 			// 
 			this.panelDemoSimple1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -54,15 +79,13 @@
 			this.panelDemoSimple1.Size = new System.Drawing.Size(664, 442);
 			this.panelDemoSimple1.TabIndex = 0;
 			// 
-			// tabControl1
+			// panelDemoAdvanced1
 			// 
-			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tabControl1.Location = new System.Drawing.Point(0, 0);
-			this.tabControl1.Name = "tabControl1";
-			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(678, 474);
-			this.tabControl1.TabIndex = 0;
+			this.panelDemoAdvanced1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelDemoAdvanced1.Location = new System.Drawing.Point(3, 3);
+			this.panelDemoAdvanced1.Name = "panelDemoAdvanced1";
+			this.panelDemoAdvanced1.Size = new System.Drawing.Size(664, 442);
+			this.panelDemoAdvanced1.TabIndex = 0;
 			// 
 			// FormMain
 			// 
@@ -74,6 +97,7 @@
 			this.Text = "Event Hub";
 			this.tabPage1.ResumeLayout(false);
 			this.tabControl1.ResumeLayout(false);
+			this.tabPage2.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -83,6 +107,8 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private Panel.PanelDemoSimple panelDemoSimple1;
 		private System.Windows.Forms.TabControl tabControl1;
+		private System.Windows.Forms.TabPage tabPage2;
+		private Panel.PanelDemoAdvanced panelDemoAdvanced1;
 
 	}
 }

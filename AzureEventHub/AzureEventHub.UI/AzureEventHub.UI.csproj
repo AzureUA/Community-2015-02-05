@@ -61,6 +61,12 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Panel\PanelDemoAdvanced.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panel\PanelDemoAdvanced.Designer.cs">
+      <DependentUpon>PanelDemoAdvanced.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panel\PanelDemoSimple.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="UIHelper.cs" />
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\PanelDemoAdvanced.resx">
+      <DependentUpon>PanelDemoAdvanced.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panel\PanelDemoSimple.resx">
       <DependentUpon>PanelDemoSimple.cs</DependentUpon>
